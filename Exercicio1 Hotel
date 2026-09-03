@@ -1,0 +1,201 @@
+Algoritmo "Sistema Hotel"
+
+var
+   opcaoMenu: inteiro
+   opcaoQuarto, opcaoPagamento: inteiro
+   nome, quarto, pagamento, statusPagamento: caractere
+
+
+// Tela inicial
+Procedimento TelaInicial()
+Inicio
+   Escreval("=====================================")
+   Escreval("     Bem-vindo ao Hotel Claudinho THUCO")
+   Escreval("=====================================")
+   Escreval("Pressione Enter para continuar....")
+   Leia()
+FimProcedimento
+
+
+// Escolher quarto
+Procedimento EscolherQuarto()
+Inicio
+   Escreval("")
+   Escreval("=====================================")
+   Escreval("         QUARTOS DISPONIVEIS")
+   Escreval("=====================================")
+   Escreval("1 - Suite Simples       R$ 150,00")
+   Escreval("2 - Suite Master        R$ 300,00")
+   Escreval("3 - Suite Presidencial  R$ 1500,00")
+   Escreval("=====================================")
+
+   Escreva("Escolha seu quarto: ")
+   Leia(opcaoQuarto)
+
+   Escolha opcaoQuarto
+
+      Caso 1
+         quarto <- "Suite Simples - R$ 150,00"
+
+      Caso 2
+         quarto <- "Suite Master - R$ 300,00"
+
+      Caso 3
+         quarto <- "Suite Presidencial - R$ 1500,00"
+
+      OutroCaso
+         quarto <- ""
+         Escreval("Opcao de quarto invalida!")
+
+   FimEscolha
+
+   Se quarto <> "" entao
+      Escreval("")
+      Escreval("Quarto escolhido: ", quarto)
+      Escreval("Indo para o pagamento...")
+   FimSe
+
+FimProcedimento
+
+
+// Pagamento
+Procedimento PagamentoHotel()
+Inicio
+
+   Escreval("")
+   Escreval("=====================================")
+   Escreval("            PAGAMENTO")
+   Escreval("=====================================")
+
+   Escreval("Cliente: ", nome)
+   Escreval("Quarto: ", quarto)
+   Escreval("")
+
+   Escreval("Escolha a forma de pagamento:")
+   Escreval("1 - Dinheiro")
+   Escreval("2 - Cartao")
+
+   Escreva("Digite uma opcao: ")
+   Leia(opcaoPagamento)
+
+   Escolha opcaoPagamento
+
+      Caso 1
+         pagamento <- "Dinheiro"
+         statusPagamento <- "Pagamento confirmado"
+
+      Caso 2
+         pagamento <- "Cartao"
+         statusPagamento <- "Pagamento confirmado"
+
+      OutroCaso
+         pagamento <- ""
+         statusPagamento <- "Pagamento nao confirmado"
+
+   FimEscolha
+
+   Escreval("")
+   Escreval("Forma de pagamento: ", pagamento)
+   Escreval("Status: ", statusPagamento)
+
+FimProcedimento
+
+
+// Check-in
+Procedimento CheckIn()
+Inicio
+
+   Escreval("")
+   Escreval("=====================================")
+   Escreval("             CHECK-IN")
+   Escreval("=====================================")
+
+   Escreval("Muito obrigado, ", nome, "!")
+   Escreval("Seu pagamento foi confirmado.")
+   Escreval("Seu quarto: ", quarto)
+   Escreval("")
+
+   Escreval("Check-in realizado com sucesso!")
+   Escreval("Seja muito bem-vindo ao Hotel ClaudinhoTHUCO!")
+   Escreval("Tenha uma excelente estadia!")
+
+FimProcedimento
+
+
+// Fale conosco
+Procedimento FaleConosco()
+Inicio
+   Escreval("Para duvidas entre em contato:")
+   Escreval("hoteldoClaudinho.com.br")
+FimProcedimento
+
+
+// Programa principal
+Inicio
+
+   TelaInicial()
+
+   Escreva("Digite seu nome: ")
+   Leia(nome)
+
+   Repita
+
+      Escreval("")
+      Escreval("=====================================")
+      Escreval("       HOTEL CLAUDINHO THUCHO")
+      Escreval("=====================================")
+      Escreval("1 - Escolher Quarto")
+      Escreval("2 - Fale conosco")
+      Escreval("3 - Sair")
+      Escreval("=====================================")
+
+      Escreva("Digite uma opcao: ")
+      Leia(opcaoMenu)
+
+      Escolha opcaoMenu
+
+         Caso 1
+
+            EscolherQuarto()
+
+            // Só continua se um quarto foi escolhido
+            Se quarto <> "" entao
+
+               PagamentoHotel()
+
+               // Só faz o check-in se o pagamento foi confirmado
+               Se statusPagamento = "Pagamento confirmado" entao
+
+                  Escreval("")
+                  Escreval("Pagamento confirmado!")
+                  Escreval("Obrigado pela sua reserva, ", nome, "!")
+
+                  CheckIn()
+
+               Senao
+
+                  Escreval("")
+                  Escreval("Pagamento nao confirmado.")
+                  Escreval("O Check-in nao pode ser realizado.")
+
+               FimSe
+
+            FimSe
+
+
+         Caso 2
+            FaleConosco()
+
+
+         Caso 3
+            Escreval("Encerrando o sistema... Ate logo!")
+
+
+         OutroCaso
+            Escreval("Opcao invalida! Tente novamente.")
+
+      FimEscolha
+
+   Ate opcaoMenu = 3
+
+Fimalgoritmo
